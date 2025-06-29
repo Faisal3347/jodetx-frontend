@@ -1,0 +1,48 @@
+.table-wrapper {
+  max-width: 95%;
+  margin: 30px auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow-x: auto;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Table Base */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Header */
+th.mat-header-cell {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  text-align: left;
+  padding: 12px;
+  color: #d63384;
+  font-size: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Cell */
+td.mat-cell {
+  padding: 12px;
+  vertical-align: top;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Highlight special columns */
+.column-name {
+  font-weight: 600;
+  color: #d63384;
+  font-family: monospace;
+}
+
+.column-type {
+  color: #b72bb6;
+  font-family: monospace;
+  font-weight: 500;
+}

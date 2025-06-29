@@ -1,0 +1,32 @@
+<div class="upload-wrapper">
+  <!-- Upload button on the left -->
+  <div class="upload-left">
+    <h2>Upload Aadhaar Image</h2>
+    <button class="capture-btn" (click)="triggerCamera(fileInput)">
+      Click or Capture Image
+    </button>
+    <input
+      type="file"
+      #fileInput
+      (change)="onFileSelected($event)"
+      accept="image/png, image/jpeg"
+      style="display: none;"
+      capture="environment"
+    />
+    <p class="drag-drop-note">Or drag and drop the image here</p>
+  </div>
+
+  <!-- Image preview on the right -->
+  <div class="upload-right" *ngIf="imagePreview">
+    <button class="close-button" (click)="removeImage()">×</button>
+    <img [src]="imagePreview" alt="Preview" />
+    <button class="submit-button" (click)="onSubmit()">Submit</button>
+  </div>
+</div>
+
+<!-- Aadhaar Table -->
+<app-common-table
+  *ngIf="tableData.length"
+  [headers]="tableHeaders"
+  [data]="tableData">
+</app-common-table>

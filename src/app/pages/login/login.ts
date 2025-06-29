@@ -45,7 +45,7 @@ export class LoginComponent {
             sameSite: 'Lax',
             secure: true
           });
-          this.router.navigate(['/home']);
+          this.router.navigate(['/homev2']);
         },
         error: (error: HttpErrorResponse) => {
           if (error.status === 401) {
