@@ -1,0 +1,38 @@
+<div class="login-wrapper">
+  <div class="login-card"
+       (drop)="onDrop($event)"
+       (dragover)="allowDrop($event)">
+
+    <!-- Submit and Close Row -->
+    <div class="action-bar" *ngIf="imagePreview">
+      <button class="submit-btn-top" (click)="onSubmit()">Submit</button>
+      <button class="close-button" (click)="removeImage()" aria-label="Close">
+        &times;
+      </button>
+    </div>
+
+    <h2>Upload Aadhaar Image</h2>
+
+    <!-- Preview Box -->
+    <div class="preview" *ngIf="imagePreview">
+      <img [src]="imagePreview" alt="Preview" />
+    </div>
+
+    <!-- Hidden File Input -->
+    <input
+      type="file"
+      #fileInput
+      (change)="onFileSelected($event)"
+      accept="image/png, image/jpeg"
+      style="display: none;"
+      capture="environment"
+    />
+
+    <!-- Capture Button -->
+    <button type="button" (click)="triggerCamera(fileInput)">
+      Click or Capture Image
+    </button>
+
+    <p class="register-link">Or drag and drop the image here</p>
+  </div>
+</div>
