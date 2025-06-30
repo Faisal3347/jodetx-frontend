@@ -4,12 +4,24 @@
     <ng-container *ngFor="let header of headers" [matColumnDef]="sanitizeKey(header)">
       <th mat-header-cell *matHeaderCellDef> {{ header }} </th>
       <td mat-cell *matCellDef="let element">
-        <span [ngClass]="{
-          'column-name': sanitizeKey(header) === 'name',
-          'column-type': sanitizeKey(header) === 'type'
-        }">
-          {{ element[sanitizeKey(header)] }}
-        </span>
+        <ng-container [ngSwitch]="sanitizeKey(header)">
+          <!-- For Aadhaar URL column -->
+          <a *ngSwitchCase="'aadhaarurl'" 
+             [href]="element[sanitizeKey(header)]" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="view-link">
+            View Aadhaar
+          </a>
+
+          <!-- Default cell content -->
+          <span *ngSwitchDefault [ngClass]="{
+            'column-name': sanitizeKey(header) === 'name',
+            'column-type': sanitizeKey(header) === 'type'
+          }">
+            {{ element[sanitizeKey(header)] }}
+          </span>
+        </ng-container>
       </td>
     </ng-container>
 

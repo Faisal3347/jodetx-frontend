@@ -10,8 +10,8 @@ import { MatTableModule } from '@angular/material/table';
   styleUrls: ['./common-table.component.css']
 })
 export class CommonTableComponent {
-  @Input() headers: string[] = []; // Example: ['name', 'description', 'type']
-  @Input() data: any[] = [];       // Array of objects, keys match the headers
+  @Input() headers: string[] = []; 
+  @Input() data: any[] = [];
 
   get displayedColumns(): string[] {
     return this.headers.map(header => this.sanitizeKey(header));
@@ -19,5 +19,10 @@ export class CommonTableComponent {
 
   sanitizeKey(header: string): string {
     return header.toLowerCase().replace(/\s+/g, '');
+  }
+
+  getCellValue(row: any, header: string): any {
+    const key = this.sanitizeKey(header);
+    return row[key];
   }
 }

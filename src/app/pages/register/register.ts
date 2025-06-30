@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ApiService } from '../../services/services'; // ✅ Import ApiService
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.html',
   styleUrls: ['./register.css'],
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule,RouterModule]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule]
 })
 export class RegisterComponent {
   registerForm: FormGroup;
@@ -20,7 +20,7 @@ export class RegisterComponent {
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient,
+    private api: ApiService, // ✅ Inject ApiService
     private router: Router
   ) {
     this.registerForm = this.fb.group({
@@ -46,21 +46,17 @@ export class RegisterComponent {
       return;
     }
 
-    this.http.post('http://localhost:3000/user/register', {
-      name,
-      phoneNumber,
-      password,
-      confirmPassword
-    }).subscribe({
+    // ✅ Use ApiService here
+    this.api.registerUser({ name, phoneNumber, password, confirmPassword }).subscribe({
       next: () => {
         this.successMessage = 'User created successfully!';
         this.errorMessage = '';
 
         setTimeout(() => {
           this.router.navigate(['/login']);
-        }, 2000); 
+        }, 2000);
       },
-      error: (error: HttpErrorResponse) => {
+      error: (error) => {
         this.successMessage = '';
         if (error.status === 400) {
           this.errorMessage = error.error.message || 'Registration failed.';

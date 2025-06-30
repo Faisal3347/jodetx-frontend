@@ -6,13 +6,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { routes } from './app.routes';
 import { CookieService } from 'ngx-cookie-service';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import {  withInterceptors } from '@angular/common/http';
+
 
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([])),
     provideAnimations(),
     importProvidersFrom(FormsModule, ReactiveFormsModule),
     CookieService,

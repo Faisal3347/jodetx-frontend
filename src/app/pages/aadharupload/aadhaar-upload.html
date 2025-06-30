@@ -1,5 +1,5 @@
 <div class="upload-wrapper">
-  <!-- Upload button on the left -->
+  <!-- Upload section -->
   <div class="upload-left">
     <h2>Upload Aadhaar Image</h2>
     <button class="capture-btn" (click)="triggerCamera(fileInput)">
@@ -16,7 +16,7 @@
     <p class="drag-drop-note">Or drag and drop the image here</p>
   </div>
 
-  <!-- Image preview on the right -->
+  <!-- Image preview section -->
   <div class="upload-right" *ngIf="imagePreview">
     <button class="close-button" (click)="removeImage()">×</button>
     <img [src]="imagePreview" alt="Preview" />
@@ -24,7 +24,12 @@
   </div>
 </div>
 
-<!-- Table below -->
+<!-- ✅ Response message -->
+<div *ngIf="responseMessage" class="response-message">
+  {{ responseMessage }}
+</div>
+
+<!-- Table display -->
 <app-common-table
   *ngIf="tableData.length"
   [headers]="tableHeaders"

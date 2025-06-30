@@ -46,3 +46,13 @@ td.mat-cell {
   font-family: monospace;
   font-weight: 500;
 }
+
+.view-link {
+  color: #1976d2;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.view-link:hover {
+  text-decoration: underline;
+}
